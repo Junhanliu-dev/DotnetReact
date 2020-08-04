@@ -19,6 +19,7 @@ namespace API
             var host = CreateHostBuilder(args).Build();
 
             //Anything unside using is going to be cleaned up automatically after completed.
+            //in this case, scope 
             using(var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -29,6 +30,7 @@ namespace API
                     //Applies any pending migrations for the context to the database. 
                     //Will create the database if it does not already exist.
                     context.Database.Migrate();
+                    Seed.SeedData(context);
                 }
                 catch(Exception ex){
 
