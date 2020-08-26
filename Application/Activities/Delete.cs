@@ -25,7 +25,7 @@ namespace Application.Activities
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 //Handler logic
-                var activity = _context.Activities.FindAsync(request.Id);
+                var activity = await _context.Activities.FindAsync(request.Id);
                 
                 if(activity == null) throw new Exception("Could not find activity");
 
